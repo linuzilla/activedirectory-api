@@ -1,0 +1,59 @@
+server:
+    servlet:
+        contextPath: /ad365
+    port: 3000
+
+application:
+    debug: false
+    access-log: false
+    mail-from: sender@example.com
+    gsuite:
+        debug: false
+        mailto-when-debug: recipient@example.com
+    api:
+        ip-acl:
+#        ip-acl: hasIpAddress('127.0.0.1') or hasIpAddress('0:0:0:0:0:0:0:1')
+    mail:
+        smtp:
+            auth: false
+            starttls: false
+            host: mailx.cloud.ncu.edu.tw
+            port: 25
+
+active-directory:
+    base-dn: DC=example,DC=com
+    host: 127.0.0.1
+    port: 636
+    ssl: true
+    manager: CN=Administrator,CN=Users,DC=example,DC=com
+    password: cGFzc3dvcmQ=
+    connection-timeout: 30
+
+spring:
+#    profiles:
+#        active: prod
+    application:
+        name: Active-Directory
+    data:
+        rest:
+            base-path: /repos
+    thymeleaf:
+        cache: true
+    template:
+        cache: true
+    datasource:
+        maximum-pool-size: 3
+
+datasource:
+    driver: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: db_user
+    password: cGFzc3dvcmQ=
+    dialect: org.hibernate.dialect.MySQL5Dialect
+    ddl-auto: none
+    show-sql: false
+
+logging:
+    pattern:
+        console: '%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%10.10t]){faint} %clr(%-40.40logger{39}):%clr(%4line){cyan}%clr(:){faint} %m%n'
+#
